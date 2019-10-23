@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<script>
+var cookiecount = 0;
+
+var money = 0;
+
+var Bakery = 0;
+var Mall = 0;
+var batchez = cookiecount/50;
+var timer = 300;
+var much = 1;
+var managerCount=1
+function manager(){
+	if(money >= 1000*much){
+		managerCount++
+		money=money-1000*much;
+		much = much * 2;
+		setInterval(ship, 2000/much);
+		document.getElementById("manager").innerHTML = "Buy" +"a" +""+" manager" +" " + "£" +1000*much;
+		
+	}
+}
+function timing() {
+
+	if(timer < 300){timer = timer + 1;
+		document.getElementById("timerShape").style.width=timer/3 + "px"};
+
+}
+setInterval(timing, 1000)
+function harvest(){
+	if(cookiecount >= 50 && timer===300){
+		timer = 0;
+	    money = money + (cookiecount/50)*25;
+	cookiecount = 0;
+console.log(money);
+	update();
+}
+
+}
+
+function update(){
+	document.getElementById("money").innerHTML = "£" + money;
+	document.getElementById("text").innerHTML = cookiecount + " " + "cookies";
+	Batch()
+	console.log(timer);
+
+	
+	
+	
+}
+function Batch(){
+ if (cookiecount >= 50){
+ 	document.getElementById("text").innerHTML = cookiecount / 50 + " " +"batches";
+
+ }
+
+}
+function add() {
+	cookiecount = cookiecount + 1;
+	update()
+}
+
+function ship() {
+	if (cookiecount >= 50){
+		cookiecount = cookiecount - 50;
+		money = money + 25;
+	}
+	 if (cookiecount >= 1000){
+		cookiecount = cookiecount - 350;
+		money = money + 175;
+	}
+	if(cookiecount >= 50000){
+		cookiecount = cookiecount - 50000;
+		money = money + 25000;
+	}
+
+	update()
+}
+function BuyMall(){
+	if (money >= ((Mall+1) * 1200)) {
+money = money - ((Mall+1) * 1200);
+Mall = Mall + 1;
+document.getElementById("Malling").innerHTML = "Buy a mall for" +" " +"£" + (Mall+1) * 1200;
+setInterval(add, 50)
+if (Mall > 1){document.getElementById("Mallammount").innerHTML = "You own" + " " + Mall + " " + "malls";}else{document.getElementById("Mallammount").innerHTML = "You own" + " " + Mall + " " + "mall";}
+update()
+
+	}
+}
+function BuyBakery(){
+	if (money >= ((Bakery+1) * 50)) {
+money = money - ((Bakery+1) * 50);
+Bakery = Bakery + 1;
+document.getElementById("Buttonn").innerHTML = "Buy a bakery for" +" " +"£"+ (Bakery+1) * 50;
+setInterval(add, 300)
+if (Bakery > 1){document.getElementById("bakerammount").innerHTML = "You own" + " " + Bakery + " " + "Bakeries";}else{document.getElementById("bakerammount").innerHTML = "You own" + " " + Bakery + " " + "Bakery";}
+update()
+
+	}
+}
+
+</script>
+<head>
+<title>COOKIE CLICKERS!</title>	
+</head>
+<style>
+
+
+
+img {
+	position:relative;
+	top:300px;
+	left:820px;
+	transform: scale(1.3);}
+
+	img:active {
+		transform: scale(1.25);
+	}
+
+	p {
+	position:relative;
+	
+	top:-100px;
+}
+
+div {
+	position:relative;
+	top:-200px;
+}
+
+#Buttonn {
+	
+}
+
+#timerShape {
+	width:100px;
+	height:20px;
+	background-color:lime;
+	position:absolute;
+	top:405px;
+	left:50px;
+	-webkit-transition:width 2s;
+}
+
+#timerShape2 {
+	width:100px;
+	height:20px;
+	border-style:solid;
+	border-color:lime;
+	border-width:1px;
+	position:absolute;
+	top:404px;
+	left:49px;
+}
+
+#text {
+	font-family:"Dosis SemiBold";
+}
+</style>
+<body background="Background for cookie clickers html game.jpg">
+	<a href="#" onclick="add()"><img src="Cookie.png"></a>
+<p id="text" align="center">NO COOKIES</p>
+<h1 id="money">£0</h1>
+<div align="top left">A batch is equal to 50 cookies<br><br>1 batch can be sold for £25</div>
+
+<button><a href="#" id="Ship" onclick="ship()">Sell</a></button>
+<button><a href="#" onclick="harvest()" id="harvest">Quick Harvest</a></button>
+<br>
+<br>
+<button><a href="#" onclick="manager()" id="manager">buy Manager £1000</a></button>
+<br>
+<br>
+<button><a href="#" onclick="BuyBakery()" id="Buttonn">Buy a Bakery £50</a></button>	
+<button><a href="#" onclick="BuyMall()" id="Malling">Buy a Mall £1200</a></button>	
+
+<div id="timerShape"> </div>
+<div id="timerShape2"> </div>
+<h2 id="bakerammount"></h2>
+<h2 id="Mallammount"></h2>
+
+	</body>
+</html>
